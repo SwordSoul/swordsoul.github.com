@@ -13,6 +13,7 @@ config = {
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
+  plugins: [],
   module: {
     loaders: [{
       test: /\.js$/,
@@ -20,6 +21,9 @@ config = {
         ? ['uglify',    'babel']
         : ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
+    },{
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   }
 };
@@ -27,10 +31,9 @@ config = {
 if (!prod) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.entry.unshift(
-    [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server'
-    ]);
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server'
+  );
 }
 
 module.exports = config;

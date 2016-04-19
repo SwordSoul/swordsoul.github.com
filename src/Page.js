@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import pages from './pages.js';
 import _ from 'lodash';
+import ReactMarkdown from 'react-markdown';
 
 export default class Page extends Component {
   constructor(props) {
@@ -11,14 +12,7 @@ export default class Page extends Component {
     const name = this.props.params.name;
     const text = _.find(pages, (page) => {return page.name === name}).text;
     return (
-      <span>
-        <h1>
-          {name}
-        </h1>
-        <p>
-          {text}
-        </p>
-      </span>
+      <ReactMarkdown source={text}/>
     );
   }
 }
