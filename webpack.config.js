@@ -24,7 +24,7 @@ config = {
   }
 };
 
-if !prod {
+if (!prod) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.entry.unshift(
     [
