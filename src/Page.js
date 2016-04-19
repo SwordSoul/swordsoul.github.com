@@ -11,8 +11,9 @@ export default class Page extends Component {
   render() {
     const name = this.props.params.name;
     const text = _.find(pages, (page) => {return page.name === name}).text;
+    console.log(text);
     return (
-      <ReactMarkdown source={text}/>
+      <ReactMarkdown source={text} escapeHTML={true}/>
     );
   }
 }
